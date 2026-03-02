@@ -10,8 +10,9 @@ namespace Codering
             InitBlok();
         }
 
-        private static readonly Dictionary<char, int[]> letterLocatie = new Dictionary<char, int[]>();
+        private readonly Dictionary<char, int[]> letterLocatie = new Dictionary<char, int[]>();
 
+        // static readonly om te voorkomen dat elke instantie een kopie heeft van deze tabel
         private static readonly char[,] code = new char[,]
           {{'a', 'z', 'e', 'r', 't', '1'},
         {'2', 'y', 'u', 'i', 'o', 'p'},
@@ -20,7 +21,7 @@ namespace Codering
         {'9', '7', 'l', 'm', '6', 'w'},
         {'5', '0', 'x', 'c', 'v', 'b'}};
 
-        private static void InitBlok()
+        private void InitBlok()
         {
             // opvullen dictionary om snel locatie van letter in code te vinden
             if (letterLocatie.Count == 0)
@@ -61,7 +62,7 @@ namespace Codering
 
         }
 
-        private static StringBuilder MaakEven(StringBuilder builder)
+        private StringBuilder MaakEven(StringBuilder builder)
         {
             if (builder.Length % 2 == 1)
             {
@@ -70,7 +71,7 @@ namespace Codering
             return builder;
         }
 
-        private static StringBuilder VerwijderSpecialeTekens(StringBuilder builder)
+        private StringBuilder VerwijderSpecialeTekens(StringBuilder builder)
         {
             // verwijder speciale tekens
             for (int i = 0; i < builder.Length; i++)
