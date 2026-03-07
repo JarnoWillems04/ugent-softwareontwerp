@@ -15,5 +15,11 @@ namespace Codering
             }
             return result.ToString();
         }
+
+        
+        public override string ToString()
+        {
+            return "Cijfer";
+        }
     }
 }

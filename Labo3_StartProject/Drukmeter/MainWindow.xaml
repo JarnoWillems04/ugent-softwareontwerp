@@ -1,0 +1,21 @@
+﻿<Window x:Class="Drukmeter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drukmeter"
+        mc:Ignorable="d"
+         Title="Drukmeter" Height="250" Width="420">
+    <Grid x:Name="DrukGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="200*" />
+        </Grid.ColumnDefinitions>
+        <local:InvoerControl Grid.Row="0" Grid.Column="0"/>
+
+        <local:UitvoerControl Grid.Row="0" Grid.Column="1"/>
+    </Grid>
+</Window>

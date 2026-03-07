@@ -83,5 +83,10 @@ namespace Codering
             }
             return builder;
         }
+
+        public override string ToString()
+        {
+            return "Blok";
+        }
     }
 }

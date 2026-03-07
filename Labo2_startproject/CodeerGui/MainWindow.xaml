@@ -24,8 +24,9 @@
         </GroupBox>
 
         <GroupBox Header="Kies codering" Margin="5" BorderThickness="3" Grid.Row="1" Grid.Column="0">
-            <Grid>
-                <Grid.ColumnDefinitions>
+            <Grid x:Name="GridCodeer">
+                <!--
+                <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -34,7 +35,7 @@
                 <RadioButton x:Name="Blok" Content="Blok" GroupName="Codering" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="Radio_Checked" Grid.Column="0"/>
                 <RadioButton Content="Wissel" GroupName="Codering" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="Radio_Checked" Grid.Column="1" />
                 <RadioButton Content="Cijfer" GroupName="Codering" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="Radio_Checked" Grid.Column="2"/>
-
+                -->
             </Grid>
         </GroupBox>
 

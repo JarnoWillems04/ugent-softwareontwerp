@@ -13,14 +13,19 @@ namespace Codering
             coderingen["Blok"] = new BlokCodering();
             coderingen["Wissel"] = new WisselCodering();
             coderingen["Cijfer"] = new CijferCodering();
+            //coderingen["Test"] = new CijferCodering();
         }
 
         // Staat gewoon in opdracht om te gebruiken (mag als comment staan)
         public IEnumerable<string> NamenCoderingen
         {
             get { return coderingen.Keys; }
+        }        
+
+        public IEnumerable<ICodering> Coderingen
+        {
+            get { return coderingen.Values; }
         }
-        
 
         public ICodering this[string type]
         {
