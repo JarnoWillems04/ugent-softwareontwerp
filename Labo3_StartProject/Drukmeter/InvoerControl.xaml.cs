@@ -9,11 +9,12 @@ namespace Drukmeter
     /// </summary>
     public partial class InvoerControl : UserControl, IObserver
     {
-        IDruk druk;
+        private IDruk druk;
         public InvoerControl(IDruk druk)
         {   
             InitializeComponent();
             this.druk = druk;
+            druk.Register(this);
             LblEenheid.Content = this.druk.Eenheid;
             GroupBoxDruk.Header = "druk in " + this.druk.Naam;
             TxtWaarde.Text = Convert.ToString(this.druk.Druk);
@@ -22,12 +23,12 @@ namespace Drukmeter
 
         private void BtnVerlaag_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            druk.Druk--;
         }
 
         private void BtnVerhoog_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            druk.Druk++;
         }
         private void TxtWaarde_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -37,5 +38,10 @@ namespace Drukmeter
                 TxtWaarde.Text = Convert.ToString(druk.Druk);
             }
         }
+        public void Update()
+        {
+
+        }
+
     }
 }

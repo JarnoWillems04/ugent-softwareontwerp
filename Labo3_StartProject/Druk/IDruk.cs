@@ -11,5 +11,6 @@ namespace Druk
         string Naam { get; }
         double Max {  get; }
         double Druk { get; set; }
+        void Register(IObserver observer);
     }
 }

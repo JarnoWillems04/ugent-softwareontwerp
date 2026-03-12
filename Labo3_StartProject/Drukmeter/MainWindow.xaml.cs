@@ -24,12 +24,21 @@ namespace Drukmeter
         public MainWindow()
         {
             InitializeComponent();
+            
             Init();
         }
 
         private void Init()
         {
-            IDruk druk = new DrukPascal();
+            Random rnd = new Random();
+
+            double[] factoren = { 1.0, 101325, 101325 / 14.7 };
+            string[] eenheden = { "Pa", "atm", "psi" };
+            string[] namen = { "Pascal", "Atmosfeer", "psi" };
+            int type = rnd.Next(0, 2);
+
+
+            IDruk druk = new WillekeurigeDruk(eenheden[type], namen[type], factoren[type]);
             InvoerControl ic = new(druk);
             UitvoerControl uc = new(druk);
 

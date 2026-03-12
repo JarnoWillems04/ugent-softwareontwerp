@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Drukmeter
+namespace Druk
 {
     public interface IObserver
     {
+        public void Update();
     }
 }
