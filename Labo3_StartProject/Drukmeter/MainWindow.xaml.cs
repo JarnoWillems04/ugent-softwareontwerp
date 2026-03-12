@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Druk;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,25 @@ namespace Drukmeter
         public MainWindow()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            IDruk druk = new DrukPascal();
+            InvoerControl ic = new(druk);
+            UitvoerControl uc = new(druk);
+
+            ColumnDefinition col = new();
+            DrukGrid.ColumnDefinitions.Add(col);
+
+            DrukGrid.Children.Add(ic);
+            Grid.SetRow(ic, 0);
+            Grid.SetColumn(ic, 0);
+
+            DrukGrid.Children.Add(uc);
+            Grid.SetRow(uc, 0);
+            Grid.SetColumn(uc, 1);
         }
     }
 }

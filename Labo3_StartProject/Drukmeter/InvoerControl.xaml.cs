@@ -7,17 +7,17 @@ namespace Drukmeter
     /// <summary>
     /// Interaction logic for InvoerControl.xaml
     /// </summary>
-    public partial class InvoerControl : UserControl
+    public partial class InvoerControl : UserControl, IObserver
     {
-        DrukPascal druk;
-        public InvoerControl()
-        {
+        IDruk druk;
+        public InvoerControl(IDruk druk)
+        {   
             InitializeComponent();
-            druk = new DrukPascal();
-            LblEenheid.Content = druk.Eenheid;
-            GroupBoxDruk.Header = "druk in " + druk.Naam;
-            TxtWaarde.Text = Convert.ToString(druk.Druk);
-            TxtMax.Text = Convert.ToString(druk.Max);
+            this.druk = druk;
+            LblEenheid.Content = this.druk.Eenheid;
+            GroupBoxDruk.Header = "druk in " + this.druk.Naam;
+            TxtWaarde.Text = Convert.ToString(this.druk.Druk);
+            TxtMax.Text = Convert.ToString(this.druk.Max);
         }
 
         private void BtnVerlaag_Click(object sender, System.Windows.RoutedEventArgs e)

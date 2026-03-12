@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Druk
 {
-    public class DrukPascal
+    public class DrukPascal : IDruk
     {
         
         private double druk=101325;

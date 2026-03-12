@@ -9,15 +9,15 @@ namespace Drukmeter
     /// <summary>
     /// Interaction logic for UitvoerControl.xaml
     /// </summary>
-    public partial class UitvoerControl : UserControl
+    public partial class UitvoerControl : UserControl, IObserver
     {
        
-        DrukPascal druk;
-        public UitvoerControl()
+        IDruk druk;
+        public UitvoerControl(IDruk druk)
         {
 
             InitializeComponent();
-            druk = new DrukPascal();
+            this.druk = druk;
             UpdateWijzer();
             Eenheid.Content = "Pascal";
 

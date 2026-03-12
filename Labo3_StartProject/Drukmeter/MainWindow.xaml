@@ -14,8 +14,8 @@
             <ColumnDefinition Width="200*" />
             <ColumnDefinition Width="200*" />
         </Grid.ColumnDefinitions>
-        <local:InvoerControl Grid.Row="0" Grid.Column="0"/>
+        <!--local:InvoerControl Grid.Row="0" Grid.Column="0"/>
 
-        <local:UitvoerControl Grid.Row="0" Grid.Column="1"/>
+        <local:UitvoerControl Grid.Row="0" Grid.Column="1"/-->
     </Grid>
 </Window>
