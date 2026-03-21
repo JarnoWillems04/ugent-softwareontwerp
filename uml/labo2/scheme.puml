@@ -1,0 +1,38 @@
+@startuml Labo2
+
+skinparam classAttributeIconSize 0
+
+class CodeerHelper {
+- coderingen: Dictionary<string, ICodering>
++ NamenCoderingen: IEnumerable<string>
++ {method} this[type: string]: ICodering
+}
+
+Interface ICodering {
+ + Codeer(zin: string): string
+}
+
+class BlokCodering {
+- {static} code: char[,]
+- letterLocatie: Dictionary<char, int[]>
+}
+
+class WisselCodering{}
+
+class CijferCodering{
+
+}
+
+CodeerHelper - ICodering
+
+ICodering <|.. BlokCodering
+ICodering <|.. WisselCodering
+ICodering <|.. CijferCodering
+
+note left of CodeerHelper:Simple Factory
+note left of ICodering:IStrategy
+
+note "Strategy" as N1
+BlokCodering .. N1
+WisselCodering..N1
+CijferCodering..N1

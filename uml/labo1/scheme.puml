@@ -1,0 +1,21 @@
+@startuml Labo1
+
+skinparam classAttributeIconSize 0
+
+Person <|-- Student
+
+abstract class Person{
+    - name : string
+    + Person(name : string)
+    + Name : string {readOnly}
+    + WelcomeMessage : string {readOnly}
+    + {abstract} GetInfo() : int
+}
+
+class Student{
+    -id : int
+    + Student(name : string, id : int)
+    + {method} WelcomeMessage : string {readOnly}
+}
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml Labo3-pull
+
+skinparam classAttributeIconSize 0
+
+interface IDruk{
+    +Druk:double
+    + {field} MaxDruk:double (readonly)
+    +Eenheid: string
+    + {field} Naam:string (readonly)
+    + Register(observer : IObserver) : void
+}
+
+interface IObserver{
+    + Update() : void
+}
+
+class DrukPascal{
+    - observers : List<IObserver>
+    - Notify() : void
+}
+
+class InvoerControl{
+    - model : IDruk
+    + InvoerControl(model : IDruk)
+}
+
+class UitvoerControl{
+    - model : IDruk
+    + UitvoerControl(model : IDruk)
+}
+
+IObserver <|.. InvoerControl
+IObserver <|.. UitvoerControl
+InvoerControl -- IDruk
+UitvoerControl -- IDruk
+IObserver -- DrukPascal
+IDruk <|.. DrukPascal
+
+note top of IObserver : IObserver
+note top of IDruk : ISubject
+note top of DrukPascal : Subject
+
+note "Observer" as N1
+InvoerControl .. N1
+UitvoerControl..N1
+
+@enduml
