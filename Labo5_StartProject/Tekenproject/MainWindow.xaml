@@ -1,0 +1,59 @@
+﻿<Window x:Class="Tekenproject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tekenproject"
+        mc:Ignorable="d"
+          Title="Paint" Height="500" Width="500" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0" Grid.Column="0" Background="LightGray">
+            <Button x:Name="BtnStroke" Click="BtnStroke_Click">
+                <Border  BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" CornerRadius="5">
+                    <Rectangle Width="35" Height="35" RenderTransformOrigin="31.859,23.997">
+                        <Rectangle.Fill>
+                            <SolidColorBrush x:Name="BrushStroke" Color="Black" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+            </Button>
+            <Button x:Name="BtnFill"  Click="BtnFill_Click" Margin="0,0,220,0">
+                <Border  BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" CornerRadius="5">
+                    <Rectangle Width="35" Height="35">
+                        <Rectangle.Fill>
+                            <SolidColorBrush x:Name="BrushFill" Color="White" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+            </Button>
+            <Button x:Name="BtnUndo" Click="BtnUndo_Click" ToolTip="Undo"  >
+                <Border Padding="2" BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" CornerRadius="5">
+                    <Image Source="Resources/undo.png" />
+                </Border>
+            </Button>
+            <Button x:Name="BtnRedo" Click="BtnRedo_Click" ToolTip="Redo"  >
+                <Border Padding="2" BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" CornerRadius="5">
+                    <Image Source="Resources/redo.png"/>
+                </Border>
+            </Button>
+
+            <Button x:Name="BtnReset" Click="BtnReset_Click" ToolTip="Reset"  >
+                <Border Padding="2" BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" CornerRadius="5">
+                    <Image Source="Resources/delete.png" />
+                </Border>
+            </Button>
+        </ToolBar>
+        <Border Padding="2" BorderThickness="2" BorderBrush="Black" Background="White" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0">
+            <Canvas x:Name="TekenCanvas" Focusable="true" Background="Transparent" Width="400" Height="400"  MouseDown="Canvas_MouseDown" MouseUp="Canvas_MouseUp" KeyDown="Canvas_KeyDown"/>
+        </Border>
+    </Grid>
+</Window>
+
+
