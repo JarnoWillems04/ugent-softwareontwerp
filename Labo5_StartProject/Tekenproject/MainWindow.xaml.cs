@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Shapes;
 using Tekenproject.Pattern;
 
 namespace Tekenproject
@@ -11,14 +12,15 @@ namespace Tekenproject
     {
         DrawLogic receiver;
 
+        CommandInvoker invoker = new();
+
         public MainWindow()
         {
             InitializeComponent();
             receiver = new DrawLogic(this);
             TekenCanvas.Focus();
         }
-
-        #region MouseEvents       
+       
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             TekenCanvas.CaptureMouse();
@@ -28,10 +30,10 @@ namespace Tekenproject
         private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             TekenCanvas.ReleaseMouseCapture();
-            receiver.MouseUp(e.GetPosition(TekenCanvas));
+            Shape shape = receiver.MouseUp(e.GetPosition(TekenCanvas));
+            invoker.Execute(new DrawCommand(receiver, shape));
         }
 
-        #endregion
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
            if (e.Key == Key.F)
@@ -42,26 +44,26 @@ namespace Tekenproject
 
         private void BtnFill_Click(object sender, RoutedEventArgs e)
         {
-            receiver.FillNr++;
+            invoker.Execute(new ToggleFillCommand(receiver));
         }
 
         private void BtnStroke_Click(object sender, RoutedEventArgs e)
         {
-            receiver.StrokeNr++;
+            invoker.Execute(new ToggleStrokeCommand(receiver));
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            receiver.ClearCanvas();
+            invoker.Execute(new ResetWindowCommand(receiver));
         }
 
         private void BtnUndo_Click(object sender, RoutedEventArgs e)
         {
-
+            invoker.Undo();
         }
         private void BtnRedo_Click(object sender, RoutedEventArgs e)
         {
-
+            invoker.Redo();
         }
     }
 }

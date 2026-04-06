@@ -1,0 +1,19 @@
+@startuml startproject
+skinparam classAttributeIconSize 0
+MainWindow -  DrawLogic
+class MainWindow{
+    - receiver: DrawLogic
+}
+class DrawLogic{
+    - mainwindow: MainWindow
+    + DrawLogic(mainWindow: MainWindow)
+    ~ {method}StrokeNr: int
+    ~ {method}FillNr: int
+    ~ {method}StrokeColor : SolidBrushColor {get;}
+    ~ {method}FillColor : SolidBrushColor {get;}
+    ~ ClearCanvas(): void
+    ~ AddDrawing(shape:Shape): void
+    ~ MouseDown(p: Point): void
+    ~ MouseUp(p: Point): void
+}
+@enduml

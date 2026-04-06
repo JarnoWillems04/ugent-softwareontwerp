@@ -13,6 +13,8 @@ namespace Tekenproject.Pattern
     {
         SolidColorBrush[] colors = { Brushes.Black, Brushes.White, Brushes.Gray, Brushes.Red, Brushes.Green, Brushes.Blue, Brushes.Yellow, Brushes.Purple, Brushes.Brown, Brushes.Orange };
 
+        Stack<Shape> shapes = new Stack<Shape>();
+
         Random random = new Random();
 
         MainWindow window;
@@ -50,11 +52,23 @@ namespace Tekenproject.Pattern
         internal void ClearCanvas()
         {
             window.TekenCanvas.Children.Clear();
+            shapes.Clear();
         }
 
         internal void AddDrawing(Shape shape)
         {
             window.TekenCanvas.Children.Add(shape);
+            shapes.Push(shape);
+        }
+
+        internal void RemoveLast()
+        {
+            if (shapes.Count > 0)
+            {
+                Shape shape = shapes.Pop();
+                window.TekenCanvas.Children.Remove(shape);
+            }
+
         }
 
         internal void MouseDown(Point point)
@@ -62,12 +76,14 @@ namespace Tekenproject.Pattern
            start = point;
         }
 
-        internal void MouseUp(Point point)
+        internal Shape MouseUp(Point point)
         {
             einde = point;
 
             einde = point;
-            AddDrawing(GetShape());
+
+            return GetShape();
+            //AddDrawing(GetShape());
         }
 
              
@@ -81,7 +97,17 @@ namespace Tekenproject.Pattern
             Canvas.SetLeft(ellipse, Math.Min(start.X, einde.X));
             Canvas.SetTop(ellipse, Math.Min(start.Y, einde.Y));
             return ellipse;
-        }        
+        }
+
+        internal Stack<Shape> GetShapes()
+        {
+            Stack<Shape> kopie = new();
+            foreach (Shape shape in shapes)
+            {
+                kopie.Push(shape);
+            }
+            return kopie;
+        }
     }
 
 }
