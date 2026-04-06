@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -35,17 +36,39 @@ namespace Tekenproject.Pattern
             get { return strokeNr; }
             set
             {
-                strokeNr = value % colors.Length;
+                if (value < 0)
+                {
+
+                    strokeNr = (colors.Length + value) % (colors.Length);
+                }
+                else
+                {
+                    strokeNr = value % colors.Length;
+
+                }
+                
                 window.BrushStroke.Color = StrokeColor.Color;
             }
         }
 
         internal int FillNr
         {
-            get { return fillNr; }
+            get 
+            {
+                return fillNr; 
+            }
             set
             {
-                fillNr = value % colors.Length;
+                if (value < 0)
+                {
+
+                    fillNr = (colors.Length + value) % (colors.Length);
+                }
+                else
+                {
+                    fillNr = value % colors.Length;
+                    
+                }
                 window.BrushFill.Color = FillColor.Color;
             }
         }
