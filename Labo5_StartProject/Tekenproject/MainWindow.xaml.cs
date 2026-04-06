@@ -36,9 +36,26 @@ namespace Tekenproject
 
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
-           if (e.Key == Key.F)
-                receiver.StrokeNr++;
-           
+            switch (e.Key)
+            {
+                case Key.F:
+                    invoker.Execute(new ToggleFillCommand(receiver));
+                    break;
+
+                case Key.S:
+                    invoker.Execute(new ToggleStrokeCommand(receiver));
+                    break;
+                case Key.R:
+                    invoker.Execute(new ResetWindowCommand(receiver));
+                    break;
+                case Key.U:
+                    invoker.Undo();
+                    break;
+                case Key.Z:
+                    invoker.Redo();
+                    break;
+            }
+
         }
 
 
