@@ -1,0 +1,64 @@
+@startuml project
+skinparam classAttributeIconSize 0
+
+Class User{
+    +User()
+    +FirstName: string 
+    +LastName: string
+    +ID: int
+}
+
+interface IDataBase{
+    +OpenConnection(): void 
+    +SelectAllUsers() List<User>
+    +InsertUser(user: User): void
+    +UpdateUser(user:User):void
+    +DeleteUser(user: User): void
+    +IsConnected{get;}: bool
+    +CloseConnection(): void
+}
+
+
+Class Gebruiker{
+    +Gebruiker();
+    +Achternaam: string
+    +Voornaam: string
+    +GebruikersCode: int
+}
+
+
+interface IGebruikersLijst{
+    +Gebruikers{get;}:Gebruiker[]
+    +voegToe(gebruiker: Gebruiker):void
+    +Verwijder(gebruiker: Gebruiker):void
+    +PasAan(gebruiker: Gebruiker):void
+}
+
+
+Class Systeem {
+
+}
+
+Class UserToGebruiker{
+
+}
+
+Class GebruikerLijst{}
+
+Class MySQLDatabase{}
+
+Systeem - IGebruikersLijst
+
+UserToGebruiker ..|> IGebruikersLijst
+
+GebruikerLijst ..|> IGebruikersLijst
+
+GebruikerLijst - Gebruiker
+
+UserToGebruiker - IDataBase
+
+MySQLDatabase ..|> IDataBase
+
+MySQLDatabase ..> User
+
+@enduml
