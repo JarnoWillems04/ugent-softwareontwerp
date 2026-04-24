@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Samenwerken\Samenwerken.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="GebruikerPortaal">
       <HintPath>..\GebruikerPortaal.dll</HintPath>
     </Reference>
