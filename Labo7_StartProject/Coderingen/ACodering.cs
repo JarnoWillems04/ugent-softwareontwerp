@@ -19,9 +19,11 @@ namespace Coderingen
             {
                 zinBuffer = MaakEven(zinBuffer);
             }
-            zin = Codering(zinBuffer.ToString());
+            string result = Codering(zinBuffer.ToString());
 
-            return zin;
+            Console.WriteLine(zin + " -- " + ToString() + " --> " + result);
+
+            return result;
         }
 
         public abstract string Codering(string zin);
