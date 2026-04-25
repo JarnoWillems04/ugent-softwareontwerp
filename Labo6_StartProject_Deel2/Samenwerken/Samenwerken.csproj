@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <Reference Include="GebruikerPortaal">
-      <HintPath>..\..\Startproject\GebruikerPortaal.dll</HintPath>
+      <HintPath>..\GebruikerPortaal.dll</HintPath>
     </Reference>
     <Reference Include="UserDatabase">
-      <HintPath>..\..\Startproject\UserDatabase.dll</HintPath>
+      <HintPath>..\UserDatabase.dll</HintPath>
     </Reference>
   </ItemGroup>
 

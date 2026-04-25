@@ -4,13 +4,13 @@ using UserDatabase;
 namespace Samenwerken
 {
     public class UserToGebruiker : IGebruikersLijst
-    {       
+    {
         IDatabase db;//Niet vastleggen in deze klasse         
-        public UserToGebruiker(IDatabase db)  
+        public UserToGebruiker(IDatabase db)
         {
             this.db = db;
         }
-        
+
         public Gebruiker[] Gebruikers
         {
             get
@@ -41,7 +41,7 @@ namespace Samenwerken
 
         public void PasAan(Gebruiker gebruiker)
         {
-            checkConnection();           
+            checkConnection();
             db.UpdateUser(new UserGebruiker(gebruiker));
             db.CloseConnection();
         }
