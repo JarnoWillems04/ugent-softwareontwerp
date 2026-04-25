@@ -1,10 +1,15 @@
 ﻿namespace Catalogus
 {
-    public class Afdeling 
+    public class Afdeling : ABibComposite
     {
         public string Id { get; set; }
         public string Naam { get; set; }
-        public string Inhoud
+
+        //public Afdeling() 
+        //{
+        //    elementen = new List<IBibItem>();
+        //}
+        public override string Inhoud
         {
             get
             {

@@ -1,7 +1,7 @@
 ﻿
 namespace Catalogus
 {
-    public class Boek
+    public class Boek : ABibItem
     {
         public string Id { get; set; }
         public string Titel { get; set; }
@@ -9,7 +9,7 @@ namespace Catalogus
         public string Uitgeverij { get; set; }
         public int Jaartal { get; set; }
 
-        public string Inhoud
+        public override string Inhoud
         {
            get { return Id + ": \"" + Titel + "\", " + Auteur + ", " + Uitgeverij + ", " + Jaartal; }
         }

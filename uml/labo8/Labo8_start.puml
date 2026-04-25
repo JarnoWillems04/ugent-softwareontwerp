@@ -1,0 +1,74 @@
+@startuml project
+skinparam classAttributeIconSize 0
+
+CLass Hoofdprogramma
+
+
+interface IBibItem {
+    +ID: string
+    +ouder: IBibItem
+    +VoegToe(bibItem: IBibItem):void
+    +Verwijder(bibItem: IBibItem):void
+    +Zoek(id: string): IBibItem    
+    +VerplaatsNaar(bibItem: IBibItem):void
+    +Toon(insprong:int): string
+}
+
+abstract Class ABibItem {
+    +{abstract} Inhoud{get}: string
+    +VoegToe(bibItem: IBibItem):void
+    +Verwijder(bibItem: IBibItem):void
+    +Zoek(id: string): IBibItem    
+    +VerplaatsNaar(bibItem: IBibItem):void
+    +Toon(insprong:int): string
+}
+
+abstract Class ABibComposite {
+    #elementen: ICollection<IBibItem>
+    +{abstract} Inhoud{get}: string
+    +VoegToe(bibItem: IBibItem):void
+    +Verwijder(bibItem: IBibItem):void
+    +Zoek(id: string): IBibItem    
+    +Toon(insprong:int): string
+}
+
+class Boek{
+    +Titel: string
+    +Auteur: string 
+    +Uitgeverij: string
+    +Jaartal: int
+}
+
+class Artikel{
+    +Titel: string
+    +Auteur: string
+}
+
+class Tijdschrift{    
+    +Titel: string
+    +Uitgeverij: string
+    +Jaartal: DateTime
+}
+
+class Afdeling{
+    +Naam: string
+}
+
+Hoofdprogramma - IBibItem
+
+ABibItem ..|> IBibItem
+
+ABibComposite o-- IBibItem
+
+ABibComposite -|> ABibItem
+
+Afdeling -|> ABibComposite
+
+Tijdschrift -|> ABibComposite
+
+Boek -|> ABibItem
+
+Artikel -|> ABibItem
+
+
+@enduml
