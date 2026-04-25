@@ -18,14 +18,12 @@ interface IDataBase{
     +CloseConnection(): void
 }
 
-
 Class Gebruiker{
     +Gebruiker();
     +Achternaam: string
     +Voornaam: string
     +GebruikersCode: int
 }
-
 
 interface IGebruikersLijst{
     +Gebruikers{get;}:Gebruiker[]
@@ -34,13 +32,15 @@ interface IGebruikersLijst{
     +PasAan(gebruiker: Gebruiker):void
 }
 
-
 Class Systeem {
-
 }
 
 Class UserToGebruiker{
+}
 
+Class GebruikerToUser{
+    -gebruikerslijst: IGebruikersLijst
+    +GebruikerToUser(lijst: IGebruikersLijst)
 }
 
 Class GebruikerLijst{}
@@ -56,6 +56,10 @@ GebruikerLijst ..|> IGebruikersLijst
 GebruikerLijst - Gebruiker
 
 UserToGebruiker - IDataBase
+
+' De nieuwe relaties voor GebruikerToUser
+GebruikerToUser ..|> IDataBase
+GebruikerToUser - IGebruikersLijst
 
 MySQLDatabase ..|> IDataBase
 

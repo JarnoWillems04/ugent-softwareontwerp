@@ -22,10 +22,10 @@ try
     TelUsers(db);
 
     //toegevoegd voor tweede adapter
-    //Console.WriteLine("***********Adapter GebruikerToUser ********");
-    //IDatabase db2 = new GebruikerToUser(gebruikersLijst);
-    //db2.InsertUser(new User() { ID = 1, FirstName = "John", LastName = "Doe" });
-    //TelUsers(db);
+    Console.WriteLine("***********Adapter GebruikerToUser ********");
+    IDatabase db2 = new GebruikerToUser(gebruikersLijst); //Fake DB
+    db2.InsertUser(new User() { ID = 1, FirstName = "John", LastName = "Doe" });
+    TelUsers(db);
 }
 catch (Exception e)
 {
