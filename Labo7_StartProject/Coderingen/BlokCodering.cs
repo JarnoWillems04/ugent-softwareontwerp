@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using Coderingen;
+using System.Text;
 
 namespace Codering
 {
-    public class BlokCodering: ICodering
+    public class BlokCodering: ACodering
     {
         // static readonly om te voorkomen dat elke instantie een kopie heeft van deze tabel
         private static readonly char[,] code = new char[,]
@@ -35,52 +36,18 @@ namespace Codering
         {
             return "Blok";
         }
-        public string Codeer(string zin)
+        public override string Codering(string zin)
         {
-            // To LowerCase
-            StringBuilder zinBuffer = new StringBuilder(zin.ToLower());
-
-            // Append 0 to sentence with odd characters
-            zinBuffer = MaakEven(zinBuffer);
-
-            // Replace unknown characters
-            zinBuffer = VerwijderSpecialeTekens(zinBuffer);
-
-            string tekst = zinBuffer.ToString();
-
             // Encode sentence
-            StringBuilder encoded = new StringBuilder(tekst.Length);
-            for (int i = 0; i < tekst.Length; i += 2)
+            StringBuilder encoded = new StringBuilder(zin.Length);
+            for (int i = 0; i < zin.Length; i += 2)
             {
-                int[] loc1 = letterLocatie[tekst[i]];
-                int[] loc2 = letterLocatie[tekst[i + 1]];
+                int[] loc1 = letterLocatie[zin[i]];
+                int[] loc2 = letterLocatie[zin[i + 1]];
                 encoded.Append(code[loc1[0], loc2[1]]);
                 encoded.Append(code[loc2[0], loc1[1]]);
             }
             return encoded.ToString();
         }
-
-        private StringBuilder MaakEven(StringBuilder builder)
-        {
-            if (builder.Length % 2 == 1)
-            {
-                builder.Append(0);
-            }
-            return builder;
-        }
-
-        private StringBuilder VerwijderSpecialeTekens(StringBuilder builder)
-        {
-            // verwijder speciale tekens
-            for (int i = 0; i < builder.Length; i++)
-            {
-                if (!char.IsLower(builder[i]) && !char.IsDigit(builder[i]))
-                {
-                    builder[i] = '0';
-                }
-            }
-            return builder;
-        }
-
     }
 }

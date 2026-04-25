@@ -1,16 +1,17 @@
-﻿using System.Text;
+﻿using Coderingen;
+using System.Text;
 
 
 namespace Codering
 {
-    public class CijferCodering: ICodering
+    public class CijferCodering: ACodering
     {
         public override string ToString()
         {
             return "Cijfer";
         }
 
-        public string Codeer(string zin)
+        public override string Codering(string zin)
         {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < zin.Length; i++)
@@ -21,5 +22,9 @@ namespace Codering
             return result.ToString();
         }
 
+        protected override bool BoolOneven()
+        {
+            return false;
+        }
     }
 }

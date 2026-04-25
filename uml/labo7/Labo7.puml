@@ -1,0 +1,30 @@
+@startuml project
+skinparam classAttributeIconSize 0
+
+Class GUI {}
+
+Interface ICodering {
+    string Codeer(string codeer)
+    string ToString()
+}
+
+abstract Class ACodering {}
+
+CLass CodeerHelper {}
+
+CLass BlokCodering {}
+Class CijferCodering {}
+CLass NoCodering {}
+Class WisselCodering {}
+
+
+GUI-CodeerHelper
+
+CodeerHelper-ICodering
+
+ACodering ..|> ICodering
+
+BlokCodering -|> ACodering
+CijferCodering -|> ACodering
+NoCodering -|> ACodering
+WisselCodering -|> ACodering

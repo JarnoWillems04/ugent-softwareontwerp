@@ -47,10 +47,11 @@ namespace CodeerGui
                 i++;
             }
         }
-   private void Invoer_TextChanged(object sender, TextChangedEventArgs e)
+        private void Invoer_TextChanged(object sender, TextChangedEventArgs e)
         {
             CodeerZin();
         }
+
         private void CodeerZin() { 
             string zin = invoer.Text;
             if (zin != null)
@@ -66,7 +67,7 @@ namespace CodeerGui
             string type = (string)button.Content;
             codeer = codeerHelper[type];
             CodeerZin();
-       }
+        }
 
 
     }

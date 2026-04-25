@@ -1,14 +1,22 @@
-﻿namespace Codering
+﻿using Coderingen;
+
+namespace Codering
 {
-    internal class NoCodering : ICodering
+    internal class NoCodering : ACodering
     {
         public override string ToString()
         {
             return "NoCodering";
         }
-        public string Codeer(string zin)
+
+        public override string Codering(string zin)
         {
             return zin;
+        }
+
+        protected override bool BoolVervang()
+        {
+            return false;
         }
     }
 }

@@ -1,16 +1,18 @@
-﻿using System.Text;
+﻿using Coderingen;
+using System.Text;
 
 
 namespace Codering
 {
-    public class WisselCodering : ICodering
+    public class WisselCodering : ACodering
     {
 
         public override string ToString()
         {
             return "Wissel";
         }
-        public string Codeer(string zin)
+
+        public override string Codering(string zin)
         {
             // lengte even?
             if (zin.Length % 2 != 0)
