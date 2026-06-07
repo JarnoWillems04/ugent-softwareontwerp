@@ -63,5 +63,21 @@ namespace Catalogus
 
             return null; // nergens gevonden
         }
+
+        public override IEnumerable<IBibItem> ZoekTrefwoord(string trefwoord)
+        {
+            if (HasTrefwoord(trefwoord))
+            {
+                yield return this;
+            }
+            foreach (IBibItem item in elementen)
+            {
+                {
+                    foreach (IBibItem bibitem in item.ZoekTrefwoord(trefwoord))
+                        yield return bibitem;
+
+                }
+            }
+        }
     }
 }

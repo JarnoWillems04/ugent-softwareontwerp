@@ -13,6 +13,9 @@ namespace Catalogus
            get { return Id + ": \"" + Titel + "\", " + Auteur + ", " + Uitgeverij + ", " + Jaartal; }
         }
 
-
+        public override bool HasTrefwoord(string trefwoord)
+        {
+            return Auteur.Contains(trefwoord) || Titel.Contains(trefwoord) || Uitgeverij.Contains(trefwoord);
+        }
     }
 }

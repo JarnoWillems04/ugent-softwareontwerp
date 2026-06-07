@@ -5,7 +5,7 @@
 
         public Afdeling()
         {
-            elementen = new List<IBibItem>();
+            elementen = new SortedSet<IBibItem>(new Sorteerder());
         }
         public override string Inhoud
         {
@@ -15,5 +15,9 @@
             }
         }
 
+        public override bool HasTrefwoord(string trefwoord)
+        {
+            return false;
+        }
     }
 }

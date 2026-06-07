@@ -21,5 +21,7 @@ namespace Catalogus
         void VerplaatsNaar(IBibItem bibItem);
         // item weergeven als string met een aantal karakters als indentatie
         string Toon(int insprong);
+
+        IEnumerable<IBibItem> ZoekTrefwoord(string trefwoord);
     }
 }

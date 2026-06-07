@@ -9,5 +9,10 @@
             get {return Id + ": \"" + Titel + "\", " + Auteur; }
             
         }
+
+        public override bool HasTrefwoord(string trefwoord)
+        {
+            return Auteur.Contains(trefwoord) || Titel.Contains(trefwoord);
+        }
     }
 }

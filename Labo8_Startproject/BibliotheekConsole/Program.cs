@@ -16,3 +16,10 @@ else
 {
     Console.WriteLine("Item met id ID07 niet gevonden");
 }
+
+Console.WriteLine("Trefwoord zoek");
+
+foreach (IBibItem ib in start.ZoekTrefwoord("en"))
+{
+    Console.WriteLine(ib.Toon(0));
+}

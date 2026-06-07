@@ -19,6 +19,9 @@
             }
         }
 
-        
+        public override bool HasTrefwoord(string trefwoord)
+        {
+            return Titel.Contains(trefwoord) || Uitgeverij.Contains(trefwoord);
+        }
     }
 }

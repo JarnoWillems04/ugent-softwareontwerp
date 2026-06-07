@@ -42,5 +42,15 @@ namespace Catalogus
             if (id.Equals(Id)) return this;
             else return null;
         }
+
+        public abstract bool HasTrefwoord(string trefwoord);
+
+        public virtual IEnumerable<IBibItem> ZoekTrefwoord(string trefwoord)
+        {
+            if (HasTrefwoord(trefwoord))
+            {
+                yield return this;
+            }
+        }
     }
 }
