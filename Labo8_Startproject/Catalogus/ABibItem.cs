@@ -13,7 +13,13 @@ namespace Catalogus
 
         public virtual string Toon(int insprong)
         {
-            throw new NotImplementedException();
+            string toon = "";
+            for (int i = 0; i < insprong; i++)
+            {
+                toon += "-";
+            }
+            toon += Inhoud;
+            return toon;
         }
 
         public void VerplaatsNaar(IBibItem bibItem)
@@ -33,8 +39,8 @@ namespace Catalogus
 
         public virtual IBibItem Zoek(string id)
         {
-            if (this.Id == id) return this;
-            return null;
+            if (id.Equals(Id)) return this;
+            else return null;
         }
     }
 }

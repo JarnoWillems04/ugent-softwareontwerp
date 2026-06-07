@@ -7,12 +7,32 @@ namespace Catalogus
 {
     public abstract class ABibComposite : ABibItem
     {
-        public ICollection<IBibItem> elementen;
+        protected ICollection<IBibItem> elementen;
+        public string Naam { get; set; }
 
         public ABibComposite()
         {
             Console.WriteLine("Making new list");
             elementen = new List<IBibItem>();
+        }
+
+        public override string Toon(int insprong)
+        {
+            String toon = "";
+
+            for (int i = 0; i < insprong; i++)
+            {
+                toon += "-";
+            }
+
+            toon += Inhoud + ": \n";
+            
+            foreach (IBibItem item in elementen)
+            {
+                toon += item.Toon(insprong + 2) + "\n";
+            }
+
+            return toon;
         }
 
         public override void Verwijder(IBibItem bibItem)
@@ -33,15 +53,15 @@ namespace Catalogus
         public override IBibItem Zoek(string id)
         {
             IBibItem item = base.Zoek(id);
-            if (item == null)
+            if (item != null) return item; // gevonden in zichzelf
+
+            foreach (IBibItem bibItem in elementen)
             {
-                foreach (IBibItem bibItem in elementen)
-                {
-                    item = bibItem.Zoek(id);
-                    if (item != null) return item;
-                }
+                IBibItem iitem = bibItem.Zoek(id);
+                if (iitem != null) return iitem; // gevonden in kind
             }
-            return item;
+
+            return null; // nergens gevonden
         }
     }
 }
