@@ -1,6 +1,6 @@
 ﻿namespace Bestanden
 {
-    public class RealFile
+    public class RealFile : IFile
     {
         string map = "C:\\test\\";  //de map waar de bestanden staan
         string filename;

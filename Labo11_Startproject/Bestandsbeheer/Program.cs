@@ -5,7 +5,7 @@ Console.Out.Write("Enter file name or STOP to exit: ");
 string? filename = Console.ReadLine();
 while (filename != null && filename.ToUpper() != "STOP")
 {
-    RealFile file = new RealFile(filename);
+    IFile file = new CachingProxyFile(filename);
     Console.WriteLine("=== 1 === " + filename + " ======");
     Console.WriteLine(file.Content);
 
