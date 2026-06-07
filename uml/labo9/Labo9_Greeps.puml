@@ -1,0 +1,49 @@
+@startuml Startproject 
+
+skinparam classAttributeIconSize 0
+
+'Klassendiagram startproject
+class GreepsWorld {
+    ...
+    + AtEdge(p: Point): bool
+    + IsWater(p: Point): bool
+    {method}...
+}
+
+abstract AItem{  
+    + Angle: double
+    + ImageFile: string
+    + Location: Point {get; set;}
+    + Size: int
+    + AItem(type: string, size: int)
+    + Act(): void {abstract}
+}
+
+AItem <|-- Ship
+AItem <|-- Tomato
+
+class Greep {
+    + HasTomato: bool
+    + Greep(world: GreepsWorld)
+    + Act(): void
+    + AtShip(): bool
+    + NearbyGreep(): bool
+    + NearbyTomato(): bool
+
+}
+
+class ItemImage {
+    + ItemImage(item: AItem)
+    + Act(): void
+}
+
+AItem <|-- Greep
+Greep --> "world" GreepsWorld
+GreepsWorld -> "Ship" Ship
+GreepsWorld --> "Items *" AItem
+
+GreepsWorld "world" <-- MainWindow
+ItemImage --> "item" AItem
+MainWindow --> "images *" ItemImage
+
+@enduml

@@ -1,92 +1,74 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using Greeps.States;
 
 namespace Greeps.Items
 {
     public class Greep : AItem
     {
-        static readonly Random random = new Random();
+        static readonly Random random = new();
 
         readonly GreepsWorld world;
 
-        const double STEP_SIZE = 10; // lengte waarover gestapt wordt
-
-        // afbeelding greep zonder tomaat
         readonly string imageWithoutTomato;
         // afbeelding greep met tomaat
         readonly string imageWithTomato = "images/greep-with-food.png";
 
+        const double STEP_SIZE = 10; // lengte waarover gestapt wordt
+
         public bool HasTomato { get { return ImageFile == imageWithTomato; } }
+
+        public IGreepState State { get; set; }
         public Greep(GreepsWorld world) : base("greep", 30)
         {
             this.world = world;
-            Angle = random.Next(360); // beweegt in willekeurige richting
-
-            // afbeelding greep zonder tomaat instellen
             imageWithoutTomato = ImageFile;
+            Start();
 
+            State = new SearchingState(this);
+
+        }
+
+        public void Start()
+        {
+            Angle = random.Next(360); // beweegt in willekeurige richting
         }
 
         public override void Act()
         {
-            Point pNext = GetNextPoint();
-            if (HasTomato)
-            {
-                if (AtShip())
-                {
-                    ImageFile = imageWithoutTomato; // figuur wisselen naar figuur zonder tomaat
-                }
-                else
-                {
-                    if (world.AtEdge(pNext))
-                    {
-                        Angle += 180; //maak rechtsomkeer
-                    }
-                    else
-                    {
-                        if (!world.IsWater(pNext))
-                        {
-                            Location = pNext; // ga vooruit
-                        }
-                        else
-                        {
-                            Angle += 180;// maak rechtsomkeer
-                        }
-                    }
-                }
-            }
-            else if (NearbyTomato())
-            {
-                if (NearbyGreep())
-                {
-                    ImageFile = imageWithTomato; // wisselen van figuur
-                    Angle = GetAngle(world.Ship);
-                }
-            }
-            else
-            {
-                Angle += random.Next(9) - 4; // draai een beetje naar links of naar rechts
-
-                if (world.AtEdge(pNext))
-                {
-                    Angle += 180; //maak rechtsomkeer
-
-                }
-                else
-                {
-                    if (!world.IsWater(pNext))
-                    {
-                        Location = pNext;
-                    }
-                    else
-                    {
-                        Angle += 180;// maak rechtsomkeer
-                    }
-                }
-            }
+            State.Act();
         }
 
+        public void ChangeImageBack()
+        {
+            ImageFile = imageWithoutTomato; // figuur wisselen naar figuur zonder tomaat
+        }
+        public void ChangeImage()
+        {
+            ImageFile = imageWithTomato; // wisselen naar figuur met tomaat
+        }
+
+        public void Wobble()
+        {
+            Angle += random.Next(10) - 4;
+        }
+        public void Move()
+        {
+            Location = GetNextPoint(); // ga vooruit
+        }
+
+        public void TurnABit()
+        {
+            Angle += random.Next(5) + 5;
+        }
+
+        public bool CanMove()
+        {
+            Point pNext = GetNextPoint();
+            return !world.AtEdge(pNext) && !world.IsWater(pNext);
+
+        }
 
         //What is the next position of the Greep
         private Point GetNextPoint()
@@ -110,6 +92,11 @@ namespace Greeps.Items
         {
             return world.AtShip(this);
 
+        }
+
+        public void TurnToShip()
+        {
+            Angle = GetAngle(world.Ship);
         }
 
         private double GetAngle(AItem target)
